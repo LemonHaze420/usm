@@ -2,7 +2,7 @@ ROOT_DIR := $(CURDIR)
 USM_DIR := $(ROOT_DIR)/usm
 TEMP_DIR := $(ROOT_DIR)/intermediate
 OBJ_DIR := $(TEMP_DIR)/obj
-ELF_IN := SLUS_208.70.ELF
+ELF_IN := SLUS_208.70.elf
 ELF_OUT := USM.elf
 LINKER_SCRIPT := linker.x
 
@@ -11,8 +11,8 @@ CC := ee-gcc
 LD := ee-ld
 WCC := wcc
 
-CXXFLAGS := #-O2 -G0 -Wall -fno-exceptions -fno-rtti -nostdlib
-CFLAGS := #-O2 -G0 -Wall -nostdlib
+CXXFLAGS := -O2 -G0 -Wall -fno-exceptions -fno-rtti -nostdlib
+CFLAGS := -O2 -G0 -Wall -nostdlib
 LDFLAGS := -T $(LINKER_SCRIPT) \
            -Ttext=0x00100000 \
            -Tbss=0x00805480 \
