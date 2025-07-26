@@ -209,8 +209,13 @@ if __name__ == "__main__":
 
     print(f"Generating build configuration for {BINNAME} - {PLATFORM} ({BASENAME})")
 
+    # workaround for chuck_register_script_libs
+    sys.setrecursionlimit(20000)
     
     split.main([YAML_FILE], modes="all", verbose=False)
+    
+    # workaround for chuck_register_script_libs
+    sys.setrecursionlimit(10000)
 
     linker_entries = split.linker_writer.entries
 

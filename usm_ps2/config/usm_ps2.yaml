@@ -30,7 +30,7 @@ options:
     rodata_string_guesser_level: 2
     gp_value: 0x80d270
     ld_bss_contains_common: True
-    
+    ld_bss_is_noload: True
     section_order: [".text", ".vutext", ".data", ".rodata", ".sbss", ".bss"]
 segments:
   - [0, databin, elf_header]
@@ -39,7 +39,7 @@ segments:
     start: 0x1000
     vram: 0x00100000
     bss_size: 0x0378a0
-    subalign: null
+    subalign: 4
     subsegments:    
       - [0x1000, asm, crt0]
       - [0x1200, asm, src/files_shaders.cpp]
@@ -61,11 +61,7 @@ segments:
       
       - [0x290D88, asm, src/files_prelib.cpp]
       - [0x297090, asm, src/files_frontend.cpp]
-      
       - [0x30CFB0, asm, src/files_script.cpp]
-      - [0x30F370, asm, src/files_script.cpp_tmp]   # fake (skips register_libs)
-      - [0x3132AC, databin]                         # fake 
-      
       - [0x326f20, asm, src/files_ai.cpp]
       - [0x3F66D4, asm, src/files_ai2.cpp]
       - [0x41A978, asm, src/files_ai3.cpp]
@@ -308,10 +304,10 @@ segments:
       #- [0x628c00, rodata, src/files_entity.cpp]
       #- [0x628c00, rodata, src/files_misc1.cpp]
       
-      - [0x6b6300, data]
-      #- [0x706258, rodata, vudata]
-      #- { start: 0x706258, type: .sbss, vram:0x00845258 }
-      #- { start: 0x706271, type: .bss, vram:0x00845400 }
-      #- { start: 0x706271, type: bss, vram:0x0087cca0 }     # .vubss
+      - { start: 0x6b6300, type: data, vram:0x7f5300 }
+      - { start: 0x706258, type: sbss, vram:0x00845258 }
+      - { start: 0x706271, type: bss, vram:0x00845400 }
+      #- { start: 0x706271, type: bss, vram:0x0087cca0, name: vubss }     # .vubss
   - [0x70628c, databin]                                     # .stab
+  - [0x7d7630, databin]                                     # .mdebug
   - [0x7f85882]
