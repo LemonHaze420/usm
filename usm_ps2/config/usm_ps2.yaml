@@ -24,7 +24,7 @@ options:
     
     disasm_unknown: True
     endianness: little
-    make_full_disasm_for_code: True
+    #make_full_disasm_for_code: True
     use_gp_rel_macro_nonmatching: False
     find_file_boundaries: False
     rodata_string_guesser_level: 2
@@ -34,12 +34,12 @@ options:
     section_order: [".text", ".vutext", ".data", ".rodata", ".sbss", ".bss"]
 segments:
   - [0, databin, elf_header]
-  - [0x80, pad]
   - name: main
     type: code
     start: 0x1000
     vram: 0x00100000
     bss_size: 0x0378a0
+    subalign: null
     subsegments:    
       - [0x1000, asm, crt0]
       - [0x1200, asm, src/files_shaders.cpp]
@@ -67,7 +67,6 @@ segments:
       - [0x3132AC, databin]                         # fake 
       
       - [0x326f20, asm, src/files_ai.cpp]
-      - [0x3A0558, asm, src/files_ai.cpp_2]
       - [0x3F66D4, asm, src/files_ai2.cpp]
       - [0x41A978, asm, src/files_ai3.cpp]
       - [0x49E630, asm, src/files_ai4.cpp]
@@ -303,16 +302,16 @@ segments:
       
       - [0x5d6040, databin, vutext]
       
-      - [0x628c00, .rodata, src/files_shaders.cpp]
-      - [0x628c00, .rodata, src/files_anim.cpp]
-      - [0x628c00, .rodata, src/files_spiderman.cpp]
-      - [0x628c00, .rodata, src/files_entity.cpp]
-      - [0x628c00, .rodata, src/files_misc1.cpp]
+      #- [0x628c00, rodata, src/files_shaders.cpp]
+      #- [0x628c00, rodata, src/files_anim.cpp]
+      #- [0x628c00, rodata, src/files_spiderman.cpp]
+      #- [0x628c00, rodata, src/files_entity.cpp]
+      #- [0x628c00, rodata, src/files_misc1.cpp]
       
-      - [0x6b6300, .data]
-      - [0x706258, databin, vudata]
-      - { start: 0x706258, type: .sbss, vram:0x00845258 }
-      - { start: 0x706271, type: .bss, vram:0x00845400 }
-      - { start: 0x706271, type: bss, vram:0x0087cca0 }     # .vubss
+      - [0x6b6300, data]
+      #- [0x706258, rodata, vudata]
+      #- { start: 0x706258, type: .sbss, vram:0x00845258 }
+      #- { start: 0x706271, type: .bss, vram:0x00845400 }
+      #- { start: 0x706271, type: bss, vram:0x0087cca0 }     # .vubss
   - [0x70628c, databin]                                     # .stab
   - [0x7f85882]
