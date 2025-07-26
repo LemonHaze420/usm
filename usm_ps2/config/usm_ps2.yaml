@@ -1,0 +1,318 @@
+name: Ultimate Spider-Man (???)
+sha1: 2d03c812eedf4b4044c20c5e8f78620338382395
+options:
+    basename: SLUS_208.70
+    base_path: ..
+    target_path: SLUS_208.70
+    
+    asm_path: asm
+    src_path: src
+    build_path: build
+    data_path: data
+    asset_path: assets
+    
+    extensions_path: tools/splat_ext
+    symbol_addrs_path: config/symbols.txt
+    reloc_addrs_path:  config/reloc_addrs.txt
+    undefined_funcs_auto_path: config/undefined_funcs_auto.txt
+    undefined_syms_auto_path:  config/undefined_syms_auto.txt  
+    ld_script_path: build/SLUS_208.70.ld
+    
+    # compiler settings
+    platform: ps2
+    compiler: EEGCC
+    
+    disasm_unknown: True
+    endianness: little
+    make_full_disasm_for_code: True
+    use_gp_rel_macro_nonmatching: False
+    find_file_boundaries: False
+    rodata_string_guesser_level: 2
+    gp_value: 0x80d270
+    ld_bss_contains_common: True
+    
+    section_order: [".text", ".vutext", ".data", ".rodata", ".sbss", ".bss"]
+segments:
+  - [0, databin, elf_header]
+  - [0x80, pad]
+  - name: main
+    type: code
+    start: 0x1000
+    vram: 0x00100000
+    bss_size: 0x0378a0
+    subsegments:    
+      - [0x1000, asm, crt0]
+      - [0x1200, asm, src/files_shaders.cpp]
+      - [0x2CCF8, asm, src/files_mashable.cpp]
+      - [0x54C58, asm, src/files_anim.cpp]
+      - [0x8278C, asm, src/files_tools.cpp]
+      
+      - [0x88440, asm, src/files_spiderman.cpp]
+      - [0xA5EC4, asm, src/files_entity.cpp]
+      - [0x1195FC, asm, src/files_misc1.cpp]
+      - [0x1693A4, asm, src/files_misc2.cpp]
+      - [0x1BAD94, asm, src/files_misc3.cpp]
+      - [0x1FE76C, asm, src/files_misfits.cpp]
+      - [0x241F90, asm, src/files_panels.cpp]
+      
+      - [0x26E8DC, asm, src/files_charanimtype.cpp]
+      - [0x28C8A0, asm, src/files_highopt.cpp]
+      - [0x28CA08, asm, src/files_fast.cpp]
+      
+      - [0x290D88, asm, src/files_prelib.cpp]
+      - [0x297090, asm, src/files_frontend.cpp]
+      
+      - [0x30CFB0, asm, src/files_script.cpp]
+      - [0x30F370, asm, src/files_script.cpp_tmp]   # fake (skips register_libs)
+      - [0x3132AC, databin]                         # fake 
+      
+      - [0x326f20, asm, src/files_ai.cpp]
+      - [0x3A0558, asm, src/files_ai.cpp_2]
+      - [0x3F66D4, asm, src/files_ai2.cpp]
+      - [0x41A978, asm, src/files_ai3.cpp]
+      - [0x49E630, asm, src/files_ai4.cpp]
+      
+      - [0x50D558, asm, src/obj/shader_ps2/us_buildingVertexDef.cpp]
+      - [0x50D670, asm, src/obj/shader_ps2/us_building_simpleVertexDef.cpp]
+      - [0x50D788, asm, src/obj/shader_ps2/us_colorvolVertexDef.cpp]
+      - [0x50D8A0, asm, src/obj/shader_ps2/us_decal3dVertexDef.cpp]
+      - [0x50D9B8, asm, src/obj/shader_ps2/us_frontendVertexDef.cpp]
+      - [0x50DAD0, asm, src/obj/shader_ps2/us_grungeVertexDef.cpp]
+      - [0x50DBE8, asm, src/obj/shader_ps2/us_lodVertexDef.cpp]
+      - [0x50DD00, asm, src/obj/shader_ps2/us_Ocean2VertexDef.cpp]
+      - [0x50DE18, asm, src/obj/shader_ps2/us_outlineVertexDef.cpp]
+      - [0x50DF30, asm, src/obj/shader_ps2/us_personVertexDef.cpp]
+      - [0x50E048, asm, src/obj/shader_ps2/us_shinyVertexDef.cpp]
+      - [0x50E160, asm, src/obj/shader_ps2/us_simpleVertexDef.cpp]
+      - [0x50E278, asm, src/obj/shader_ps2/us_streetVertexDef.cpp]
+      - [0x50E390, asm, src/obj/shader_ps2/us_translucentVertexDef.cpp]
+      
+      
+      - [0x50E4A8, asm, src/base/source/tl_instbank.cpp]
+      - [0x50EF84, asm, src/base/source/tl_initlist.cpp]
+      - [0x50EFD0, asm, src/base/source/tl_system.cpp]
+      
+      - [0x50F34C, asm, src/aeps/source/apsContainersBase.cpp]
+      - [0x50F520, asm, src/aeps/source/apsMash.cpp]
+      - [0x512C44, asm, src/aeps/source/apsDomain.cpp]
+      - [0x512E04, asm, src/aeps/source/apsAction.cpp]
+      - [0x513458, asm, src/aeps/source/apsGroup.cpp]
+      - [0x5150D4, asm, src/aeps/source/apsGroupMgr.cpp]
+      - [0x51532C, asm, src/aeps/source/apsPFD.cpp]
+      - [0x5155A4, asm, src/aeps/source/apsEffect.cpp]
+      - [0x516480, asm, src/aeps/source/apsEffectTemplate.cpp]
+      - [0x516F80, asm, src/aeps/source/apsCommon.cpp]
+      - [0x51732C, asm, src/aeps/source/apsMath.cpp]
+      - [0x518118, asm, src/aeps/source/apsInternal.cpp]
+      - [0x518EF0, asm, src/aeps/source/apsSuppliedActions.cpp]
+      - [0x51D5EC, asm, src/aeps/source/apsSuppliedDomains.cpp]
+      - [0x51F3CC, asm, src/aeps/source/apsExtendedActions.cpp]
+      - [0x521290, asm, src/aeps/source/apsRenderer.cpp]
+      - [0x5214D4, asm, src/aeps/source/apsBillboardRenderer.cpp]
+      - [0x521E04, asm, src/aeps/source/apsColorBillboardRenderer.cpp]
+      - [0x52274C, asm, src/aeps/source/apsRectangleRenderer.cpp]
+      - [0x52307C, asm, src/aeps/source/apsColorRectangleRenderer.cpp]
+      - [0x5239C4, asm, src/aeps/source/apsUVARenderer.cpp]
+      - [0x524368, asm, src/aeps/source/apsColorUVARenderer.cpp]
+      - [0x524CF4, asm, src/aeps/source/apsSimpleMeshRenderer.cpp]
+      - [0x525E8C, asm, src/aeps/source/sm2Renderer.cpp]
+      - [0x527910, asm, src/aeps/source/apsTLtypes.cpp]
+      - [0x527A38, asm, src/aeps/source/apsActionList.cpp]
+      - [0x527FD8, asm, src/aeps/source/sm2Internal.cpp]
+      
+      - [0x5280F0, asm, src/Ngl/src/ps2/ngl_ps2_dma.cpp]
+      - [0x528258, asm, src/Ngl/src/ps2/ngl_ps2_gs.cpp]
+      - [0x52D430, asm, src/Ngl/src/ps2/ngl_ps2_texture.cpp]
+      - [0x5328C0, asm, src/Ngl/src/ps2/ngl_ps2.cpp]
+      - [0x532BBC, asm, src/Ngl/src/ps2/ngl_ps2_vu.cpp]
+      - [0x53684C, asm, src/Ngl/src/ps2/ngl_ps2_mesh.cpp]
+      - [0x536A00, asm, src/Ngl/src/ps2/ngl_ps2_scene.cpp]
+      - [0x539394, asm, src/Ngl/src/ps2/ngl_ps2_stencil.cpp]
+      - [0x53A91C, asm, src/Ngl/src/ps2/ngl_ps2_vertexdef.cpp]
+      - [0x53BF38, asm, src/Ngl/src/ngl_scene.cpp]
+      - [0x53E6D4, asm, src/Ngl/src/ngl_mesh.cpp]
+      - [0x542890, asm, src/Ngl/src/ngl_lighting.cpp]
+      - [0x543A74, asm, src/Ngl/src/ngl_scenedump.cpp]
+      - [0x543B9C, asm, src/Ngl/src/ngl_font.cpp]
+      - [0x5467C8, asm, src/Ngl/src/ngl_quad.cpp]
+      - [0x546E14, asm, src/Ngl/src/ngl_internal.cpp]
+      - [0x546F2C, asm, src/Ngl/src/ngl_texture.cpp]
+      - [0x54A15C, asm, src/Ngl/src/ngl_debug.cpp]
+      - [0x54F190, asm, src/Ngl/src/ngl_params.cpp]
+      - [0x54F2F0, asm, src/Ngl/src/ngl_morph.cpp]
+      - [0x550A98, asm, src/Ngl/src/ngl_palette.cpp]
+      - [0x5510B4, asm, src/Ngl/src/ngl_stencil.cpp]
+      - [0x5511F0, asm, src/Ngl/src/ngl_vertexdef.cpp]
+      - [0x551A84, asm, src/Ngl/shaders/debug/DebugShader.cpp]
+      - [0x55214C, asm, src/Ngl/src/ps2/DebugVertexDef.cpp]
+      - [0x552574, asm, src/Ngl/src/ps2/ngl_ps2_font.cpp]
+      - [0x553514, asm, src/Ngl/src/ps2/ngl_ps2_palette.cpp]
+      - [0x553760, asm, src/Ngl/src/ps2/ngl_ps2_quad.cpp]
+      - [0x5549C0, asm, src/Ngl/src/ps2/ngl_ps2_scenedump.cpp]
+      
+      - [0x554AD8, asm, src/nal/source/common/nal_anim.cpp]
+      - [0x555344, asm, src/nal/source/common/nal_entropy_decoder.cpp]
+      - [0x55A6E4, asm, src/nal/source/common/nal_generic.cpp]
+      - [0x560B34, asm, src/nal/source/common/nal_generic_component.cpp]
+      - [0x56BAD0, asm, src/nal/source/common/nal_ik.cpp]
+      - [0x56BFF8, asm, src/nal/source/common/nal_init.cpp]
+      - [0x58B910, asm, src/nal/source/common/nal_initlist.cpp]
+      - [0x58B9B4, asm, src/nal/source/common/nal_math.cpp]
+      - [0x58BB24, asm, src/nal/source/common/nal_sceneanim.cpp]
+      - [0x58C214, asm, src/nal/source/common/nal_skeleton.cpp]
+      - [0x58C4B4, asm, src/nal/source/common/nal_cache.cpp]
+      - [0x58C71C, asm, src/nal/source/common/nal_generic_morph.cpp]
+      
+      - [0x58DC64, asm, src/nsl/src/nsl/nslInit.cpp]
+      - [0x58E2E4, asm, src/nsl/src/nsl/nslBank.cpp]
+      - [0x58EE7C, asm, src/nsl/src/nsl/nslBankLoad.cpp]
+      - [0x58F3EC, asm, src/nsl/src/nsl/nslGroup.cpp]
+      - [0x58F7B0, asm, src/nsl/src/nsl/nslSource.cpp]
+      - [0x59105C, asm, src/nsl/src/nsl/nslVoice.cpp]
+      - [0x591F24, asm, src/nsl/src/nsl/ps2/nsl_ps2.cpp]
+      - [0x593CB8, asm, src/nsl/src/nsl/ps2/nsl_ps2_stream.cpp]
+      
+      - [0x593DDC, asm, src/nfl/src/nfl_common.cpp]
+      - [0x593E24, asm, src/nfl/src/ps2/liquid_manager.cpp]
+      - [0x594450, asm, src/nfl/src/ps2/nfl_ps2.cpp]
+      - [0x5949D4, asm, src/nfl/src/ps2/nfl_ps2_rpc.cpp]
+      - [0x594F10, asm, src/nfl/src/ps2/nfl_ps2_stream.cpp]
+      - [0x595DD8, asm, src/nfl/src/tx/tx.c]
+      - [0x595E50, asm, src/nfl/src/tx/txSlotPool.c]
+      - [0x5962B4, asm, src/nfl/src/tx/tx_tl.cpp]
+      - [0x5962E0, asm, src/nfl/src/ps2/ps2fs.c]
+      - [0x596AF8, asm, src/nfl/src/tx/txPath.c]
+      
+      - [0x596D34, asm, src/nvl/src/ps2/nvl_ps2.cpp]
+      
+      - [0x5980A8, asm, src/physics/source/physics_system.cpp]
+      - [0x599C28, asm, src/physics/source/physics_system_internal.cpp]
+      - [0x5A2A7C, asm, src/physics/source/phys_util.cpp]
+      - [0x5A3748, asm, src/physics/source/rigid_body.cpp]
+      - [0x5A3C80, asm, src/physics/source/rbc_def_contact.cpp]
+      - [0x5A4508, asm, src/physics/source/rbc_def_generic.cpp]
+      - [0x5A6540, asm, src/physics/source/rbc_def_vehicle.cpp]
+      - [0x5A7300, asm, src/physics/source/rbc_def_ragdoll.cpp]
+      - [0x5A9A54, asm, src/physics/source/rb_ragdoll_model.cpp]
+      
+      - [0x5AA3A4, asm, src/peripherals/source/ps2/PS2IconData.cpp]
+      - [0x5AA9B8, asm, src/peripherals/source/ps2/PS2MemoryUnit.cpp]
+      - [0x5AD04C, asm, src/peripherals/source/MemoryUnit.cpp]
+      
+      - [0x5AD504, asm, src/link2/src/link.cpp]
+      - [0x5AE000, asm, src/link2/src/ps2/link_ps2.cpp]
+      - [0x5AE458, asm, src/link2/src/profiler.cpp]
+      
+      # plat
+      - [0x5AE4A0, asm, libscf.c]
+      - [0x5AEA60, asm, libmc.c]
+      - [0x5AF7C8, asm, ps2/SNTuner/SNTuner.c]
+      - [0x5AFB98, asm, libpc.c]
+      - [0x5AFC08, asm, graphdev.c]
+      - [0x5B0A38, asm, libvu0.c]
+      - [0x5B0C10, asm, libpad.c]
+      - [0x5B1B48, asm, sdr_main.c]
+      - [0x5B1ED0, asm, eecdvd.c]
+      - [0x5B3688, asm, mpeg.c]
+      - [0x5B4068, asm, init.c]
+      - [0x5B4A70, asm, defhandler.c]
+      - [0x5B4A90, asm, mpc.c]
+      - [0x5B9750, asm, csc.c]
+      - [0x5B9ED0, asm, libipu.c]
+      - [0x5BA240, asm, ipuinit.c]
+      - [0x5BA4E0, asm, sce/ee/gcc/src/newlib/libm/math/s_atan.c]
+      - [0x5BA8F0, asm, sce/ee/gcc/src/newlib/libm/math/s_ceil.c]
+      - [0x5BAAB0, asm, sce/ee/gcc/src/newlib/libm/math/s_cos.c]
+      - [0x5BABB8, asm, sce/ee/gcc/src/newlib/libm/math/s_fabs.c]
+      - [0x5BABF0, asm, sce/ee/gcc/src/newlib/libm/math/s_sin.c]
+      - [0x5BACE8, asm, sce/ee/gcc/src/newlib/libm/math/sf_atan.c]
+      - [0x5BAF90, asm, sce/ee/gcc/src/newlib/libm/math/sf_ceil.c]
+      - [0x5BB068, asm, sce/ee/gcc/src/newlib/libm/math/sf_cos.c]
+      - [0x5BB150, asm, sce/ee/gcc/src/newlib/libm/math/sf_fabs.c]
+      - [0x5BB170, asm, sce/ee/gcc/src/newlib/libm/math/sf_floor.c]
+      - [0x5BB258, asm, sce/ee/gcc/src/newlib/libm/math/sf_sin.c]
+      - [0x5BB348, asm, sce/ee/gcc/src/newlib/libm/math/sf_tan.c]
+      - [0x5BB3D0, asm, sce/ee/gcc/src/newlib/libm/math/w_acos.c]
+      - [0x5BB4C0, asm, sce/ee/gcc/src/newlib/libm/math/w_asin.c]
+      - [0x5BB5B0, asm, sce/ee/gcc/src/newlib/libm/math/w_atan2.c]
+      - [0x5BB6C8, asm, sce/ee/gcc/src/newlib/libm/math/w_fmod.c]
+      - [0x5BB7E8, asm, sce/ee/gcc/src/newlib/libm/math/w_pow.c]
+      - [0x5BBC18, asm, sce/ee/gcc/src/newlib/libm/math/w_sqrt.c]
+      - [0x5BBD28, asm, sce/ee/gcc/src/newlib/libm/math/wf_acos.c]
+      - [0x5BBE28, asm, sce/ee/gcc/src/newlib/libm/math/wf_asin.c]
+      - [0x5BBF28, asm, sce/ee/gcc/src/newlib/libm/math/wf_atan2.c]
+      - [0x5BC050, asm, sce/ee/gcc/src/newlib/libm/math/wf_log.c]
+      - [0x5BC198, asm, sce/ee/gcc/src/newlib/libm/math/wf_pow.c]
+      - [0x5BC6A0, asm, sce/ee/gcc/src/newlib/libm/math/e_acos.c]
+      - [0x5BCC70, asm, sce/ee/gcc/src/newlib/libm/math/e_asin.c]
+      - [0x5BD1A0, asm, sce/ee/gcc/src/newlib/libm/math/e_atan2.c]
+      - [0x5BD4D8, asm, sce/ee/gcc/src/newlib/libm/math/e_fmod.c]
+      - [0x5BD8C8, asm, sce/ee/gcc/src/newlib/libm/math/e_pow.c]
+      - [0x5BE5F0, asm, sce/ee/gcc/src/newlib/libm/math/e_rem_pio2.c]
+      - [0x5BEB10, asm, sce/ee/gcc/src/newlib/libm/math/e_sqrt.c]
+      - [0x5BEE18, asm, sce/ee/gcc/src/newlib/libm/math/ef_acos.c]
+      - [0x5BF248, asm, sce/ee/gcc/src/newlib/libm/math/ef_asin.c]
+      - [0x5BF5E8, asm, sce/ee/gcc/src/newlib/libm/math/ef_atan2.c]
+      - [0x5BF8D0, asm, sce/ee/gcc/src/newlib/libm/math/ef_log.c]
+      - [0x5BFBF8, asm, sce/ee/gcc/src/newlib/libm/math/ef_pow.c]
+      - [0x5C0488, asm, sce/ee/gcc/src/newlib/libm/math/ef_rem_pio2.c]
+      - [0x5C0868, asm, sce/ee/gcc/src/newlib/libm/math/ef_sqrt.c]
+      - [0x5C09A0, asm, sce/ee/gcc/src/newlib/libm/math/k_cos.c]
+      - [0x5C0BF0, asm, sce/ee/gcc/src/newlib/libm/math/k_rem_pio2.c]
+      - [0x5C1758, asm, sce/ee/gcc/src/newlib/libm/math/k_sin.c]
+      - [0x5C1930, asm, sce/ee/gcc/src/newlib/libm/math/kf_cos.c]
+      - [0x5C1A88, asm, sce/ee/gcc/src/newlib/libm/math/kf_rem_pio2.c]
+      - [0x5C23D8, asm, sce/ee/gcc/src/newlib/libm/math/kf_sin.c]
+      - [0x5C24E0, asm, sce/ee/gcc/src/newlib/libm/math/kf_tan.c]
+      - [0x5C2778, asm, sce/ee/gcc/src/newlib/libm/common/s_finite.c]
+      - [0x5C2798, asm, sce/ee/gcc/src/newlib/libm/math/s_floor.c]
+      - [0x5C2970, asm, sce/ee/gcc/src/newlib/libm/math/s_isnan.c]
+      - [0x5C29A8, asm, sce/ee/gcc/src/newlib/libm/common/s_matherr.c]
+      - [0x5C29D0, asm, sce/ee/gcc/src/newlib/libm/common/s_rint.c]
+      - [0x5C2BD0, asm, sce/ee/gcc/src/newlib/libm/common/s_scalbn.c]
+      - [0x5C2D88, asm, sce/ee/gcc/src/newlib/libm/common/sf_finite.c]
+      - [0x5C2DB0, asm, sce/ee/gcc/src/newlib/libm/math/sf_isnan.c]
+      - [0x5C2DD8, asm, sce/ee/gcc/src/newlib/libm/common/sf_scalbn.c]
+      - [0x5C2F38, asm, sce/ee/gcc/src/newlib/libm/common/s_copysign.c]
+      - [0x5C2F80, asm, sce/ee/gcc/src/newlib/libm/common/sf_copysign.c]
+      - [0x5C7B70, asm, Source/libs/libc/stdlib/strtol.c]
+      - [0x5CBBE0, asm, klib.s]
+      - [0x5CC460, asm, glue.c]
+      - [0x5CC6D0, asm, cache.c]
+      - [0x5CC930, asm, intr.c]
+      - [0x5CCAD0, asm, thread.c]
+      - [0x5CCD20, asm, tty.c]
+      - [0x5CD240, asm, kprintf.c]
+      - [0x5CDBE0, asm, sifcmd.c]
+      - [0x5CE2D8, asm, sifrpc.c]
+      - [0x5CEBC8, asm, filestub.c]
+      - [0x5CFFF8, asm, eeloadfile.c]
+      - [0x5D0408, asm, iopreset.c]
+      - [0x5D0698, asm, tlbfunc.c]
+      - [0x5D0A80, asm, tlbtrap.s]
+      - [0x5D0BA0, asm, diei.c]
+      - [0x5D0C00, asm, initsys.c]
+      - [0x5D0E28, asm, libosd.c]
+      - [0x5D0FA8, asm, exit.c]
+      - [0x5D1190, asm, alarm.c]
+      - [0x5D12D0, asm, deci2.c]
+      - [0x5D1428, asm, sce/ee/gcc/src/gcc/libgcc2.c]
+      - [0x5D3188, asm, sce/ee/gcc/build/gcc/dp-bit.c]
+      - [0x5D3E48, asm, sce/ee/gcc/build/gcc/fp-bit.c]
+      - [0x5D5090, asm, sce/ee/gcc/src/gcc/frame.c]
+      
+      - [0x5d6040, databin, vutext]
+      
+      - [0x628c00, .rodata, src/files_shaders.cpp]
+      - [0x628c00, .rodata, src/files_anim.cpp]
+      - [0x628c00, .rodata, src/files_spiderman.cpp]
+      - [0x628c00, .rodata, src/files_entity.cpp]
+      - [0x628c00, .rodata, src/files_misc1.cpp]
+      
+      - [0x6b6300, .data]
+      - [0x706258, databin, vudata]
+      - { start: 0x706258, type: .sbss, vram:0x00845258 }
+      - { start: 0x706271, type: .bss, vram:0x00845400 }
+      - { start: 0x706271, type: bss, vram:0x0087cca0 }     # .vubss
+  - [0x70628c, databin]                                     # .stab
+  - [0x7f85882]
